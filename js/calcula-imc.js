@@ -17,6 +17,9 @@ for(i = 0; i < pacientes.length; i++){
     var tdAltura = paciente.querySelector('.info-altura');
     var altura = tdAltura.textContent;
 
+    var tdGordura = paciente.querySelector('.info-gordura');
+    var gordura = tdGordura.textContent;
+    
     var tdImc = paciente.querySelector('.info-imc');
 
     var validaAltura = true;
