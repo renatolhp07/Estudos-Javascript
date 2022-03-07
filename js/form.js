@@ -8,7 +8,7 @@ botaoAdicionar.addEventListener("click",function(event) {
     //Obtem informações do form
     var paciente = obtemPacienteDoFormulario(form);
 
-    console.log(form);
+    //Cria os elementos html que serão incluídos no form
 
     var pacienteTr = document.createElement('tr');
     var nomeTd = document.createElement('td');
@@ -17,12 +17,14 @@ botaoAdicionar.addEventListener("click",function(event) {
     var gorduraTd = document.createElement('td');
     var imcTd = document.createElement('td');
 
-    nomeTd.textContent = nome;
-    pesoTd.textContent = peso;
-    alturaTd.textContent = altura;
-    gorduraTd.textContent = gordura;
-    imcTd.textContent = calculaImc(peso, altura);
+    //Créditos a Bruno Akihiro que me ajudou a corrigir essa parte do código
+    nomeTd.textContent = paciente.nome;
+    pesoTd.textContent = paciente.peso;
+    alturaTd.textContent = paciente.altura;
+    gorduraTd.textContent = paciente.gordura;
+    imcTd.textContent = calculaImc(paciente.peso, paciente.altura);
 
+    //Coloca todos os elementos td como filhos do elemento pacienteTr
     pacienteTr.appendChild(nomeTd);
     pacienteTr.appendChild(pesoTd);
     pacienteTr.appendChild(alturaTd);
@@ -31,13 +33,15 @@ botaoAdicionar.addEventListener("click",function(event) {
 
     var tabela = document.querySelector('#tabela-pacientes');
 
+    //Coloca o pacienteTr como elemento filho da tabela
     tabela.appendChild(pacienteTr);
 
 });
 
 function obtemPacienteDoFormulario(form) {
 
-    var paciente = {
+   //Cria o objeto paciente
+   var paciente = {
         nome: form.nome.value,
         peso: form.peso.value,
         altura: form.altura.value,
