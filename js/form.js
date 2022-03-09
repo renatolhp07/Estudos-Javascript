@@ -9,28 +9,8 @@ botaoAdicionar.addEventListener("click",function(event) {
     var paciente = obtemPacienteDoFormulario(form);
 
     //Cria os elementos html que serão incluídos no form
-
-    var pacienteTr = document.createElement('tr');
-    var nomeTd = document.createElement('td');
-    var pesoTd = document.createElement('td');
-    var alturaTd = document.createElement('td');
-    var gorduraTd = document.createElement('td');
-    var imcTd = document.createElement('td');
-
-    //Créditos a Bruno Akihiro que me ajudou a corrigir essa parte do código
-    nomeTd.textContent = paciente.nome;
-    pesoTd.textContent = paciente.peso;
-    alturaTd.textContent = paciente.altura;
-    gorduraTd.textContent = paciente.gordura;
-    imcTd.textContent = calculaImc(paciente.peso, paciente.altura);
-
-    //Coloca todos os elementos td como filhos do elemento pacienteTr
-    pacienteTr.appendChild(nomeTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTd);
-
+    var pacienteTr = montaTr(paciente);
+    
     var tabela = document.querySelector('#tabela-pacientes');
 
     //Coloca o pacienteTr como elemento filho da tabela
@@ -49,4 +29,36 @@ function obtemPacienteDoFormulario(form) {
         imc: calculaImc(form.peso.value, form.altura.value)
     }
 return paciente;
+}
+
+function montaTr(paciente){
+    
+    var pacienteTr = document.createElement('tr');
+    pacienteTr.classList.add('paciente');
+
+    var nomeTd = document.createElement('td');
+    nomeTd.classList.add('info-nome');
+    var pesoTd = document.createElement('td');
+    pesoTd.classList.add('info-peso');
+    var alturaTd = document.createElement('td');
+    alturaTd.classList.add('info-altura');
+    var gorduraTd = document.createElement('td');
+    gorduraTd.classList.add('info-gordura');
+    var imcTd = document.createElement('td');
+    imcTd.classList.add('info-imc');
+
+    //Créditos a Bruno Akihiro que me ajudou a corrigir essa parte do código
+    nomeTd.textContent = paciente.nome;
+    pesoTd.textContent = paciente.peso;
+    alturaTd.textContent = paciente.altura;
+    gorduraTd.textContent = paciente.gordura;
+    imcTd.textContent = paciente.imc;
+    //Coloca todos os elementos td como filhos do elemento pacienteTr
+    pacienteTr.appendChild(nomeTd);
+    pacienteTr.appendChild(pesoTd);
+    pacienteTr.appendChild(alturaTd);
+    pacienteTr.appendChild(gorduraTd);
+    pacienteTr.appendChild(imcTd);
+
+    return pacienteTr;
 }
