@@ -10,11 +10,27 @@ botaoAdicionar.addEventListener("click",function(event) {
 
     //Cria os elementos html que serão incluídos no form
     var pacienteTr = montaTr(paciente);
+
+    var erro = validaPaciente(paciente);
+
+    if (erro.length > 0){
+        var mensagemErro = document.querySelector("#mensagem-erro");
+        mensagemErro.textContent = erro;
+    }
+
+    if(!validaPaciente(paciente)){
+        console.log("Paciente inválido!");
+        alert("Paciente inválido!");
+        return;
+    }
     
     var tabela = document.querySelector('#tabela-pacientes');
 
     //Coloca o pacienteTr como elemento filho da tabela
     tabela.appendChild(pacienteTr);
+
+    //limpa o formulário após inserir o paciente
+    form.reset();
 
 });
 
@@ -53,6 +69,7 @@ function montaTr(paciente){
     alturaTd.textContent = paciente.altura;
     gorduraTd.textContent = paciente.gordura;
     imcTd.textContent = paciente.imc;
+    
     //Coloca todos os elementos td como filhos do elemento pacienteTr
     pacienteTr.appendChild(nomeTd);
     pacienteTr.appendChild(pesoTd);
@@ -61,4 +78,12 @@ function montaTr(paciente){
     pacienteTr.appendChild(imcTd);
 
     return pacienteTr;
+}
+
+function validaPaciente(paciente){
+    if(validaPeso(paciente.peso)){
+        return "";
+    }else{
+        return "O peso é inválido";
+    }
 }
