@@ -27,6 +27,9 @@ botaoAdicionar.addEventListener("click",function(event) {
     //limpa o formulário após inserir o paciente
     form.reset();
 
+    var mensagemErro = document.querySelector("#mensagem-erro");
+    mensagemErro.innerHTML = "";
+
 });
 
 function obtemPacienteDoFormulario(form) {
