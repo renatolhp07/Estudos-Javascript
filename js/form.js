@@ -19,11 +19,6 @@ botaoAdicionar.addEventListener("click",function(event) {
         return;
     }
 
-    var tabela = document.querySelector('#tabela-pacientes');
-
-    //Coloca o pacienteTr como elemento filho da tabela
-    tabela.appendChild(pacienteTr);
-
     //limpa o formulário após inserir o paciente
     form.reset();
 
@@ -31,6 +26,13 @@ botaoAdicionar.addEventListener("click",function(event) {
     mensagemErro.innerHTML = "";
 
 });
+
+function adicionaPacientesNaTabela(paciente){
+    var pacienteTr = montaTr(paciente);
+    var tabela = document.querySelector('#tabela-pacientes');
+    tabela.appendChild(pacienteTr);
+
+}
 
 function obtemPacienteDoFormulario(form) {
 
